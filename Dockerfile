@@ -1,5 +1,6 @@
-FROM alpine
-RUN apk add --update nodejs npm --repository=http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/
+FROM node
+# FROM alpine
+# RUN apk add --update nodejs npm --repository=http://dl-cdn.alpinelinux.org/alpine/latest-stable/main/
 
 ENV NODE_ENV production
 
@@ -8,6 +9,5 @@ COPY package*.json ./
 RUN npm install --production
 COPY . .
 
-EXPOSE 8080 8081
-
-ENTRYPOINT ["node", "app.js"]
+EXPOSE 8080
+ENTRYPOINT [ "npm", "start" ]
